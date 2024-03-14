@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import Navigation from "./Navigation/Nevigation";
+import HomeSection from "./HomeSection/HomeSection";
 
 const Homepage = () => {
   return (
@@ -8,7 +9,7 @@ const Homepage = () => {
         <Navigation/>
       </Grid>
       <Grid item xs={12} lg={6} className="hidden lg:block w-full relative">
-        <p className="text-center">This middle part</p>
+        <HomeSection/>
       </Grid>
       <Grid item xs={0} lg={3} className="hidden lg:block w-full relative">
         <p className="text-center">This Right part</p>
