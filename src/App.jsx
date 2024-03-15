@@ -9,7 +9,7 @@ function App() {
     <div>
       
         <Routes>
-          <Route path='/' element={isLoggedIn ? <Homepage /> : <Authentication />} />
+          <Route path='/*' element={isLoggedIn ? <Homepage /> : <Authentication />} />
         </Routes>
     </div>
   );

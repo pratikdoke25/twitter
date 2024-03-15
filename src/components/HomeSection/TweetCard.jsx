@@ -5,6 +5,11 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import virat from '../../assets/images/virat.jpeg';
 import { useNavigate } from 'react-router-dom';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'; // Added import for MoreHorizIcon
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { FavoriteBorder } from '@mui/icons-material';
 
 const TweetCard = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -17,7 +22,21 @@ const TweetCard = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleDeleteTweet = () => {
+    console.log("delete tweet");
+    handleClose();
+  }
+  const handleOpenReplyModel = () => {
+    console.log("open reply model");
+  }
 
+  const handleCreateRetweet = () => {
+    console.log("create retweet");
+  }
+
+  const handleLikeRetweet = () => {
+    console.log("handle like tweet");
+  }
   const navigate = useNavigate();
 
   return (
@@ -57,10 +76,46 @@ const TweetCard = () => {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+
+                <MenuItem onClick={handleDeleteTweet}>Delete</MenuItem>
+                <MenuItem onClick={handleDeleteTweet}>Edit</MenuItem>
               </Menu>
+            </div>
+          </div>
+          <div className='mt-2'>
+            <div onClick={()=>navigate(`/tweet/${8}`)} className='cursor-pointer' >
+              <p className='mb-2 p-0'>Hi i am on twitter.my name is pratik</p>
+              <img className='w-[28rem] border border-gray-400 p-5 rounded-md'
+                src={virat} alt="viratimage" />
+            </div>
+            <div className='py-5 flex-wrap justify-between items-center'>
+              <div className='space-x-5 flex items-center text-gray-600'>
+                <ChatBubbleOutlineIcon className='cursor-pointer ' onClick={handleOpenReplyModel} />
+                <p>45</p>
+                <div className={`${true ? "text-pink-600" : "text-gray-600"} space-x-5 flex items-center`}>
+                <RepeatIcon
+                  onClick={handleCreateRetweet}
+                  className='cursor-pointer' />
+                <p>50</p>
+              </div>
+              <div className={`${true ? "text-pink-600" : "text-gray-600"} space-x-5 flex items-center`}>
+                {true ? <FavoriteIcon
+                  onClick={handleLikeRetweet}
+                  className='cursor-pointer' /> : <FavoriteBorder
+                  onClick={handleLikeRetweet}
+                  className='cursor-pointer' />}
+                <p>50</p>
+              </div>
+              <div className='space-x-5 flex items-center text-gray-600'>
+                <BarChartIcon className='cursor-pointer ' onClick={handleOpenReplyModel} />
+                <p>450</p>
+              </div>
+              <div className='space-x-5 flex items-center text-gray-600'>
+                <FileUploadIcon className='cursor-pointer ' onClick={handleOpenReplyModel} />
+                <p>45</p>
+              </div>
+              </div>
+              
             </div>
           </div>
         </div>
