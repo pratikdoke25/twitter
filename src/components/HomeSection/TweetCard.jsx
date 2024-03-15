@@ -10,10 +10,15 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FavoriteBorder } from '@mui/icons-material';
-
+import ReplyModal from './ReplyModal';
+import {useState} from 'react'
 const TweetCard = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [openReplyModal, setOpenReplyModal] = useState(false);
+  const handleOpenReplyModel = () => setOpenReplyModal(true);
+  const handleCloseReplayModel = () => setOpenReplyModal(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,9 +31,6 @@ const TweetCard = () => {
     console.log("delete tweet");
     handleClose();
   }
-  const handleOpenReplyModel = () => {
-    console.log("open reply model");
-  }
 
   const handleCreateRetweet = () => {
     console.log("create retweet");
@@ -40,7 +42,7 @@ const TweetCard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="">
+    <React.Fragment>
       <div className='flex space-x-5'>
         <Avatar
           onClick={() => navigate(`/profile/${6}`)}
@@ -120,7 +122,10 @@ const TweetCard = () => {
           </div>
         </div>
       </div>
-    </div>
+      <section>
+      <ReplyModal open={openReplyModal} handleClose={handleCloseReplayModel} />
+      </section>
+    </React.Fragment>
   );
 }
 

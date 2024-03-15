@@ -13,6 +13,9 @@ import ProfileModal from './ProfileModal';
 
 const Profile = () => {
     const navigate = useNavigate();
+    const [openProfileModal,setOpenProfileModal]=useState(false);
+     const handleOpenProfileModel = () => setOpenProfileModal(true);
+    const handleClose = () => setOpenProfileModal(false);
     const handleBack = () => {
         navigate(-1);
     };
@@ -29,9 +32,7 @@ const Profile = () => {
         }
     };
 
-    const handleOpenProfileModel = () => {
-        console.log("open edit modal");
-    };
+    
 
     const handleFollowUser = () => {
         console.log("handle follow modal");
@@ -41,7 +42,7 @@ const Profile = () => {
         <div>
             <section className="z-50 flex items-center sticky top-0 bg-opacity-95">
                 <KeyboardBackspaceIcon className='cursor-pointer' onClick={handleBack} />
-                <h1 className='py-5 text-xl font-bold opacity-95 ml-5'>Pratik DOke</h1>
+                <h1 className='py-5 text-xl font-bold opacity-95 ml-5'>Profile</h1>
             </section>
             <section>
                 <img className='w-full h-[350px] object-cover' src="https://cdn.pixabay.com/photo/2024/01/15/04/30/woman-8509281_640.jpg" alt="" />
@@ -124,7 +125,7 @@ const Profile = () => {
     </Box>
             </section>
             <section>
-                <ProfileModal />
+                <ProfileModal handleClose={handleClose} open={openProfileModal} />
             </section>
         </div>
     );

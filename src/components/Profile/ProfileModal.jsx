@@ -3,9 +3,10 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useFormik } from 'formik'; // Importing useFormik from formik library
-import { IconButton, TextField } from '@mui/material';
+import { IconButton, TextField, Avatar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
+import virat from '../../assets/images/virat.jpeg';
+import './ProfileModal.css';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,14 +21,13 @@ const style = {
     borderRadius: 4
 };
 
-export default function ProfileModal() {
-    const [open, setOpen] = React.useState(false);
+export default function ProfileModal({ open, handleClose }) {
+    // const [open, setOpen] = React.useState(false);
     const [uploading, setUploading] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    
 
-    const handleSubmit = () => {
-        console.log("handleSubmit");
+    const handleSubmit = (values) => {
+        console.log("handleSubmit",values);
     }
 
     const formik = useFormik({ // Using useFormik hook to initialize formik
@@ -52,9 +52,9 @@ export default function ProfileModal() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            
             <Modal
-                open={true}
+                open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
@@ -70,22 +70,35 @@ export default function ProfileModal() {
                             </div>
                             <Button type='submit'>Save</Button>
                         </div>
-                        <div className='overflow-y-scroll overflow-x-hidden h-[80vh]'>
-                            <div className='w-full '>
-                                <div className='relative'>
-                                    <img
-                                        className='w-full h-[12rem] object-cover object-center'
-                                        src="https://cdn.pixabay.com/photo/2023/03/20/20/35/sunset-7865844_640.jpg"
-                                        alt=""
-                                    />
-                                    <input
-                                        className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer'
-                                        type="file"
-                                        name='backgroundImage'
-                                        onChange={handleImageChange}
-                                    />
+                        <div className='hidescrollBar overflow-y-scroll overflow-x-hidden h-[80vh]'>
+                            <React.Fragment>
+                                <div className='w-full '>
+                                    <div className='relative'>
+                                        <img
+                                            className='w-full h-[12rem] object-cover object-center'
+                                            src="https://cdn.pixabay.com/photo/2023/03/20/20/35/sunset-7865844_640.jpg"
+                                            alt=""
+                                        />
+                                        <input
+                                            className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer'
+                                            type="file"
+                                            name='backgroundImage'
+                                            onChange={handleImageChange}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                                <div className='w-full transform -translate-y-20 ml-4 h-[6rem]'>
+                                    <div className='relative'>
+                                        <Avatar sx={{ width: "10rem", height: "10rem", border: "4px solid white" }}
+                                            src={virat} />
+                                        <input
+                                            className='absolute top-0 left-0 w-[10rem] h-full opacity-0 cursor-pointer'
+                                            onChange={handleImageChange}
+                                            name="image"
+                                            type="file" />
+                                    </div>
+                                </div>
+                            </React.Fragment>
                             <div className='space-y-3'>
                                 <TextField
                                     fullWidth
@@ -129,7 +142,11 @@ export default function ProfileModal() {
                                     error={formik.touched.location && Boolean(formik.errors.location)}
                                     helperText={formik.touched.location && formik.errors.location}
                                 />
-                                <div></div>
+                                <div className='my-3'>
+                                    <p className='text-lg'>Birth date . Edit</p>
+                                    <p className='text-2xl'>Feb 23, 2000</p>
+                                </div>
+                                <p className='py-3'>Edit Professional Profile</p>
                             </div>
                         </div>
                     </form>
